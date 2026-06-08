@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>مقهى كورف · KORV COFFEE — تبوك</title>
+<meta name="description" content="مقهى كورف KORV في تبوك — قهوة مختصة، حلويات، وأجواء فخمة هادئة بإطلالة وجداريات فنية. مفتوحون حتى الثانية فجراً.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Reem+Kufi:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" rel="stylesheet">
+<style>
+:root{
+  --bg:#171410; --bg-2:#201b15; --bg-3:#272019; --ink:#f0e9dd;
+  --clay:#c2714d; --clay-l:#d68f66; --clay-d:#9c5536;
+  --gold:#d6a93f; --gold-l:#e6c570; --sand:#c9bba4; --muted:#9a907e;
+  --line:rgba(240,233,221,.13); --line-2:rgba(240,233,221,.07);
+  --fl:'Playfair Display',serif; --fa-d:'Reem Kufi',sans-serif;
+  --fa:'Tajawal',sans-serif; --fu:'Jost',sans-serif;
+  --e1:cubic-bezier(.22,1,.36,1); --e2:cubic-bezier(.32,.72,0,1); --rad:24px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--fa);background:var(--bg);color:var(--ink);line-height:1.75;
+  overflow-x:hidden;font-weight:400;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+::selection{background:var(--clay);color:#fff}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+.en{font-family:var(--fu);direction:ltr;unicode-bidi:isolate}
+.grain{position:fixed;inset:0;z-index:120;pointer-events:none;opacity:.05;mix-blend-mode:overlay}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:center;
+  padding:22px 18px;transition:padding .5s var(--e1)}
+.nav.shrink{padding:12px 18px}
+.nav-pill{display:flex;align-items:center;gap:30px;width:min(1120px,100%);
+  background:rgba(32,27,21,.72);backdrop-filter:blur(22px) saturate(1.3);
+  -webkit-backdrop-filter:blur(22px) saturate(1.3);
+  border:1px solid var(--line);border-radius:60px;padding:11px 14px 11px 26px;
+  box-shadow:0 14px 44px -22px rgba(0,0,0,.6);transition:.5s var(--e1)}
+.brand{display:flex;align-items:center;gap:12px;margin-inline-end:auto}
+.brand-mark{width:42px;height:42px;border-radius:50%;flex:none;
+  background:radial-gradient(circle at 32% 28%,var(--clay),var(--clay-d));
+  display:grid;place-items:center;color:#fff;font-family:var(--fl);font-size:18px;font-weight:600;
+  box-shadow:inset 0 1px 2px rgba(255,255,255,.25),0 6px 16px -8px rgba(0,0,0,.7)}
+.brand-tx{display:flex;flex-direction:column;line-height:1.05}
+.brand-tx b{font-family:var(--fl);font-weight:600;font-size:19px;letter-spacing:.14em;color:var(--ink)}
+.brand-tx span{font-family:var(--fa-d);font-size:12px;color:var(--clay-l);font-weight:500}
+.nav-links{display:flex;align-items:center;gap:6px}
+.nav-links a{font-family:var(--fa-d);font-size:15px;color:var(--sand);font-weight:500;
+  padding:9px 15px;border-radius:30px;transition:.35s var(--e1)}
+.nav-links a:hover{color:var(--ink);background:rgba(240,233,221,.07)}
+.nav-cta{display:flex;align-items:center;gap:10px;background:var(--clay);color:#fff!important;
+  padding:9px 10px 9px 20px!important;border-radius:40px!important}
+.nav-cta:hover{background:var(--clay-d)!important}
+.nav-cta i{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.2);
+  display:grid;place-items:center;font-size:14px;transition:.4s var(--e1)}
+.nav-cta:hover i{transform:translateX(-3px) rotate(-12deg)}
+.burger{display:none;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);
+  background:rgba(240,233,221,.05);cursor:pointer;position:relative;flex:none}
+.burger span{position:absolute;left:13px;width:20px;height:1.6px;background:var(--ink);
+  border-radius:2px;transition:.45s var(--e1)}
+.burger span:nth-child(1){top:18px}.burger span:nth-child(2){top:24px}.burger span:nth-child(3){top:30px}
+.burger.on span:nth-child(1){top:24px;transform:rotate(45deg)}
+.burger.on span:nth-child(2){opacity:0}
+.burger.on span:nth-child(3){top:24px;transform:rotate(-45deg)}
+.overlay{position:fixed;inset:0;z-index:99;background:rgba(20,17,13,.96);
+  backdrop-filter:blur(26px);-webkit-backdrop-filter:blur(26px);display:flex;flex-direction:column;
+  justify-content:center;align-items:center;gap:6px;opacity:0;visibility:hidden;transition:.6s var(--e1)}
+.overlay.on{opacity:1;visibility:visible}
+.overlay a{font-family:var(--fa-d);font-size:30px;color:var(--ink);font-weight:500;
+  opacity:0;transform:translateY(34px);transition:.7s var(--e1)}
+.overlay a .o-en{font-family:var(--fu);font-size:11px;letter-spacing:.34em;color:var(--clay-l);
+  display:block;text-align:center;margin-top:2px;font-weight:300}
+.overlay.on a{opacity:1;transform:none}
+.overlay.on a:nth-child(1){transition-delay:.1s}.overlay.on a:nth-child(2){transition-delay:.17s}
+.overlay.on a:nth-child(3){transition-delay:.24s}.overlay.on a:nth-child(4){transition-delay:.31s}
+.overlay.on a:nth-child(5){transition-delay:.38s}
+
+/* HERO */
+.hero{position:relative;min-height:100dvh;display:flex;align-items:flex-end;padding:0 0 7vh;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:-2}
+.hero-bg img{width:100%;height:100%;object-fit:cover;animation:slowzoom 22s var(--e1) forwards}
+@keyframes slowzoom{from{transform:scale(1.12)}to{transform:scale(1)}}
+.hero-bg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(15,12,9,.55) 0%,rgba(15,12,9,.25) 36%,rgba(15,12,9,.66) 74%,rgba(15,12,9,.96) 100%)}
+.hero-inner{width:min(1180px,90vw);margin:0 auto;position:relative;z-index:2}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:var(--fu);font-size:11px;
+  letter-spacing:.32em;text-transform:uppercase;color:#fff;background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.22);padding:8px 17px;border-radius:40px;
+  backdrop-filter:blur(8px);margin-bottom:26px;font-weight:400}
+.eyebrow b{color:var(--clay-l);font-weight:500}
+.hero h1{font-family:var(--fl);font-weight:600;line-height:.94;letter-spacing:.02em;
+  font-size:clamp(72px,15vw,184px);margin-bottom:4px;text-shadow:0 24px 70px rgba(0,0,0,.5)}
+.hero h1 .ar{font-family:var(--fa-d);display:block;font-size:clamp(26px,4vw,48px);font-weight:500;
+  letter-spacing:0;color:var(--clay-l);margin-top:6px;text-shadow:none}
+.hero p.lede{font-size:clamp(16px,2vw,20px);max-width:520px;color:rgba(240,233,221,.88);
+  font-weight:300;margin:20px 0 34px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:13px;font-family:var(--fa-d);font-weight:600;
+  font-size:15.5px;padding:13px 14px 13px 26px;border-radius:46px;cursor:pointer;border:none;transition:.45s var(--e1)}
+.btn i{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:17px;transition:.45s var(--e1)}
+.btn-light{background:var(--ink);color:var(--bg)}
+.btn-light i{background:var(--clay);color:#fff}
+.btn-light:hover{transform:translateY(-3px);box-shadow:0 18px 40px -16px rgba(0,0,0,.6)}
+.btn-light:hover i{transform:translateX(-4px) rotate(-12deg)}
+.btn-ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.3)}
+.btn-ghost i{background:rgba(255,255,255,.16);color:#fff}
+.btn-ghost:hover{background:rgba(255,255,255,.16);transform:translateY(-3px)}
+.btn-ghost:hover i{transform:translateX(-4px)}
+.scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:3;
+  display:flex;flex-direction:column;align-items:center;gap:7px;color:rgba(240,233,221,.6);
+  font-family:var(--fu);font-size:10px;letter-spacing:.3em}
+.scroll-hint .ln{width:1px;height:38px;background:linear-gradient(rgba(240,233,221,.6),transparent);
+  animation:drop 1.9s var(--e2) infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}
+  55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* TICKER */
+.ticker{background:var(--clay-d);color:#fff;padding:16px 0;overflow:hidden;border-block:1px solid rgba(0,0,0,.2)}
+.ticker-track{display:flex;gap:50px;width:max-content;animation:scroll 30s linear infinite}
+.ticker-track span{font-family:var(--fl);font-style:italic;font-size:22px;color:#fff;
+  display:flex;align-items:center;gap:50px;white-space:nowrap;opacity:.95}
+.ticker-track span::after{content:"✦";color:var(--gold-l);font-style:normal;font-size:13px}
+@keyframes scroll{to{transform:translateX(50%)}}
+
+/* SECTION */
+.wrap{width:min(1180px,90vw);margin:0 auto}
+.pad{padding:clamp(80px,12vh,150px) 0}
+.s-head{display:flex;flex-direction:column;align-items:center;text-align:center;margin-bottom:62px}
+.tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--fu);font-size:10.5px;
+  letter-spacing:.3em;text-transform:uppercase;color:var(--clay-l);font-weight:500;
+  padding:7px 16px;border:1px solid rgba(214,143,102,.4);border-radius:40px;margin-bottom:22px}
+.tag i{font-size:14px}
+.s-head h2{font-family:var(--fa-d);font-weight:700;font-size:clamp(34px,5.5vw,60px);line-height:1.08;color:var(--ink)}
+.s-head h2 em{font-family:var(--fl);font-style:italic;font-weight:400;color:var(--clay-l)}
+.s-head p{max-width:580px;color:var(--muted);margin-top:16px;font-size:16.5px;font-weight:300}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
+.about-tx .tag{margin-bottom:24px}
+.about-tx h2{font-family:var(--fa-d);font-weight:700;font-size:clamp(30px,4.4vw,50px);
+  line-height:1.12;color:var(--ink);margin-bottom:22px}
+.about-tx h2 em{font-family:var(--fl);font-style:italic;font-weight:400;color:var(--clay-l)}
+.about-tx p{color:var(--sand);margin-bottom:18px;font-size:16.5px;font-weight:300}
+.about-tx p b{font-weight:500;color:var(--ink)}
+.stats{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+.stat{flex:1;min-width:120px;background:var(--bg-2);border:1px solid var(--line);border-radius:18px;
+  padding:20px 18px;text-align:center}
+.stat b{display:block;font-family:var(--fl);font-size:32px;color:var(--clay-l);line-height:1}
+.stat span{font-family:var(--fa-d);font-size:13px;color:var(--muted);margin-top:7px;display:block}
+.frame{position:relative;background:var(--bg-2);border:1px solid var(--line);border-radius:30px;
+  padding:9px;box-shadow:0 34px 70px -38px rgba(0,0,0,.7)}
+.frame img{border-radius:22px;width:100%;height:580px;object-fit:cover}
+.frame .badge{position:absolute;bottom:-22px;right:24px;background:var(--bg-3);border:1px solid var(--line);
+  border-radius:18px;padding:14px 20px;display:flex;align-items:center;gap:13px;
+  box-shadow:0 18px 40px -20px rgba(0,0,0,.6)}
+.frame .badge i{width:42px;height:42px;border-radius:12px;background:var(--clay);color:#fff;
+  display:grid;place-items:center;font-size:21px}
+.frame .badge b{font-family:var(--fa-d);font-size:15px;color:var(--ink);display:block}
+.frame .badge span{font-family:var(--fu);font-size:11px;color:var(--muted);letter-spacing:.05em}
+
+/* FEATURES */
+.feats{background:var(--bg-2)}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.feat{background:var(--bg-3);border:1px solid var(--line);border-radius:var(--rad);padding:38px 30px;
+  transition:.5s var(--e1);position:relative;overflow:hidden}
+.feat::before{content:"";position:absolute;top:0;right:0;width:100%;height:3px;
+  background:linear-gradient(90deg,var(--clay),var(--gold));transform:scaleX(0);transform-origin:right;transition:.6s var(--e1)}
+.feat:hover{transform:translateY(-8px);box-shadow:0 30px 60px -32px rgba(0,0,0,.5)}
+.feat:hover::before{transform:scaleX(1)}
+.feat-ic{width:62px;height:62px;border-radius:18px;display:grid;place-items:center;font-size:30px;
+  background:linear-gradient(150deg,rgba(194,113,77,.2),rgba(214,169,63,.16));color:var(--clay-l);margin-bottom:24px}
+.feat h3{font-family:var(--fa-d);font-weight:600;font-size:22px;color:var(--ink);margin-bottom:11px}
+.feat h3 .se{font-family:var(--fl);font-style:italic;font-weight:400;font-size:15px;color:var(--clay-l);display:block}
+.feat p{color:var(--muted);font-size:15.5px;font-weight:300}
+
+/* HIGHLIGHT SPLIT */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch}
+.split-card{position:relative;border-radius:var(--rad);overflow:hidden;border:1px solid var(--line);
+  min-height:480px;background:#000}
+.split-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:1.2s var(--e1);opacity:.92}
+.split-card:hover img{transform:scale(1.06)}
+.split-card .ov{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:36px;background:linear-gradient(transparent 38%,rgba(15,12,9,.9))}
+.split-card .n{font-family:var(--fu);font-size:11px;letter-spacing:.28em;color:var(--clay-l);margin-bottom:8px}
+.split-card h3{font-family:var(--fa-d);font-weight:600;font-size:27px;color:#fff;margin-bottom:8px}
+.split-card p{font-size:14.5px;color:rgba(240,233,221,.82);font-weight:300;max-width:340px}
+
+/* SELECTION */
+.sel-wrap{background:var(--bg-2)}
+.sel-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 50px;max-width:900px;margin:0 auto}
+.sel{display:flex;gap:16px;align-items:flex-start;padding:18px 0;border-bottom:1px dashed var(--line)}
+.sel i{width:46px;height:46px;border-radius:13px;flex:none;display:grid;place-items:center;font-size:22px;
+  background:rgba(194,113,77,.14);color:var(--clay-l)}
+.sel .st b{font-family:var(--fa-d);font-weight:600;font-size:18px;color:var(--ink);display:block}
+.sel .st span{font-family:var(--fu);font-size:11px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.sel .st p{font-size:13.5px;color:var(--muted);font-weight:300;margin-top:3px}
+.sel-cta{text-align:center;margin-top:48px}
+.sel-note{text-align:center;color:var(--muted);font-family:var(--fa);font-size:14px;font-weight:300;margin-top:18px}
+
+/* GALLERY */
+.gal{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:240px;gap:16px}
+.gal figure{overflow:hidden;border-radius:20px;position:relative;cursor:pointer;border:1px solid var(--line);background:#000}
+.gal img{width:100%;height:100%;object-fit:cover;transition:1.1s var(--e1)}
+.gal figure:hover img{transform:scale(1.08)}
+.gal figure::after{content:"\e2b2";font-family:Phosphor;position:absolute;inset:0;display:grid;place-items:center;
+  color:#fff;font-size:30px;background:rgba(15,12,9,.4);opacity:0;transition:.5s var(--e1)}
+.gal figure:hover::after{opacity:1}
+.g-tall{grid-row:span 2}.g-wide{grid-column:span 2}
+
+/* CONTACT */
+.contact{position:relative;overflow:hidden}
+.contact::before{content:"";position:absolute;bottom:-40%;left:-10%;width:65%;height:90%;
+  background:radial-gradient(circle,rgba(194,113,77,.14),transparent 68%)}
+.ct-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:2}
+.ct-tx h2{font-family:var(--fa-d);font-weight:700;font-size:clamp(32px,5vw,54px);line-height:1.08;margin-bottom:20px;color:var(--ink)}
+.ct-tx h2 em{font-family:var(--fl);font-style:italic;font-weight:400;color:var(--clay-l)}
+.ct-tx>p{color:var(--sand);font-weight:300;margin-bottom:32px;max-width:440px}
+.ct-rows{display:flex;flex-direction:column;gap:6px}
+.ct-row{display:flex;align-items:center;gap:18px;padding:18px 0;border-bottom:1px solid var(--line)}
+.ct-row .ic{width:50px;height:50px;border-radius:14px;flex:none;display:grid;place-items:center;font-size:23px;
+  background:var(--bg-2);color:var(--clay-l)}
+.ct-row .d b{font-family:var(--fa-d);font-size:13px;color:var(--muted);display:block;font-weight:400}
+.ct-row .d span{font-family:var(--fl);font-size:21px;color:var(--ink);direction:ltr;unicode-bidi:plaintext}
+.ct-row .d .ar{font-family:var(--fa);font-size:17px;direction:rtl}
+.ct-card{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--rad);padding:14px}
+.ct-card img{border-radius:18px;width:100%;height:420px;object-fit:cover}
+.ct-card .cc-foot{display:flex;align-items:center;justify-content:space-between;padding:18px 12px 8px}
+.ct-card .cc-foot b{font-family:var(--fl);font-size:18px;letter-spacing:.1em}
+.ct-card .cc-foot .hrs{font-family:var(--fu);font-size:11px;color:var(--clay-l);letter-spacing:.06em}
+
+/* FOOTER */
+footer{background:#100d0a;color:var(--ink);padding:70px 0 36px;text-align:center}
+.f-mark{width:64px;height:64px;border-radius:50%;margin:0 auto 22px;
+  background:radial-gradient(circle at 32% 28%,var(--clay),var(--clay-d));display:grid;place-items:center;
+  font-family:var(--fl);font-size:24px;font-weight:600;color:#fff;box-shadow:inset 0 1px 3px rgba(255,255,255,.2)}
+footer h3{font-family:var(--fl);font-size:28px;font-weight:600;letter-spacing:.14em;margin-bottom:4px}
+footer .f-ar{font-family:var(--fa-d);color:var(--clay-l);font-size:16px;margin-bottom:26px}
+.f-links{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-bottom:30px}
+.f-links a{font-family:var(--fa-d);font-size:14.5px;color:var(--sand);transition:.3s}
+.f-links a:hover{color:var(--clay-l)}
+.f-line{width:100%;max-width:480px;height:1px;background:var(--line);margin:0 auto 24px}
+footer small{color:var(--muted);font-family:var(--fu);font-size:12px;letter-spacing:.05em;line-height:2}
+
+/* LIGHTBOX */
+.lb{position:fixed;inset:0;z-index:200;background:rgba(15,12,9,.97);display:flex;align-items:center;
+  justify-content:center;padding:30px;opacity:0;visibility:hidden;transition:.5s var(--e1)}
+.lb.on{opacity:1;visibility:visible}
+.lb img{max-width:92vw;max-height:88vh;border-radius:16px;transform:scale(.92);transition:.5s var(--e1)}
+.lb.on img{transform:scale(1)}
+.lb-x{position:absolute;top:26px;right:26px;width:52px;height:52px;border-radius:50%;
+  background:rgba(240,233,221,.1);border:1px solid rgba(240,233,221,.25);color:#fff;font-size:24px;
+  cursor:pointer;display:grid;place-items:center}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(46px);filter:blur(8px);
+  transition:opacity 1s var(--e1),transform 1s var(--e1),filter 1s var(--e1)}
+.rv.in{opacity:1;transform:none;filter:none}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}
+
+@media(max-width:980px){
+  .nav-links{display:none}.burger{display:block}
+  .about-grid,.ct-grid,.split{grid-template-columns:1fr;gap:40px}
+  .frame img{height:440px}
+  .feat-grid{grid-template-columns:repeat(2,1fr)}
+  .sel-grid{grid-template-columns:1fr;gap:0}
+  .gal{grid-template-columns:repeat(2,1fr);grid-auto-rows:200px}
+  .split-card{min-height:360px}
+}
+@media(max-width:620px){
+  .nav-pill{padding:9px 9px 9px 18px}.brand-tx b{font-size:17px}
+  .hero{padding-bottom:9vh}.hero h1{font-size:clamp(64px,21vw,104px)}
+  .feat-grid,.gal{grid-template-columns:1fr}
+  .gal{grid-auto-rows:230px}.g-wide{grid-column:span 1}.g-tall{grid-row:span 1}
+  .stats{gap:10px}.stat{min-width:calc(50% - 5px)}
+  .frame img{height:340px}.ct-card img{height:320px}
+}
+</style>
+</head>
+<body>
+<svg class="grain"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-pill">
+    <a href="#home" class="brand">
+      <span class="brand-mark">K</span>
+      <span class="brand-tx"><b>KORV</b><span>مقهى كورف</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#home">الرئيسية</a>
+      <a href="#about">عن كورف</a>
+      <a href="#selection">ما نقدّم</a>
+      <a href="#gallery">المعرض</a>
+      <a href="#contact" class="nav-cta">زورونا<i class="ph ph-arrow-left"></i></a>
+    </div>
+    <button class="burger" id="burger" aria-label="القائمة"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay">
+  <a href="#home">الرئيسية<span class="o-en">HOME</span></a>
+  <a href="#about">عن كورف<span class="o-en">ABOUT</span></a>
+  <a href="#selection">ما نقدّم<span class="o-en">OFFERINGS</span></a>
+  <a href="#gallery">المعرض<span class="o-en">GALLERY</span></a>
+  <a href="#contact">زورونا<span class="o-en">VISIT</span></a>
+</div>
+
+<!-- HERO -->
+<header class="hero" id="home">
+  <div class="hero-bg"><img src="img/hero.jpg" alt="مقهى كورف KORV تبوك"></div>
+  <div class="hero-inner">
+    <span class="eyebrow"><i class="ph-fill ph-coffee" style="color:var(--clay-l)"></i> مقهى · <b>تبوك</b></span>
+    <h1>KORV<span class="ar">مقهى كورف</span></h1>
+    <p class="lede">قهوة مختصة، حلويات، وأجواء فخمة هادئة بلمسة فنية — مساحة تستحق أن تُعاش على مهل. <span class="en">A place to slow down.</span></p>
+    <div class="hero-cta">
+      <a href="#selection" class="btn btn-light">ما نقدّمه<i class="ph ph-coffee"></i></a>
+      <a href="#contact" class="btn btn-ghost">موقعنا والاتجاهات<i class="ph ph-map-pin"></i></a>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>SCROLL</span><span class="ln"></span></div>
+</header>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span>KORV COFFEE<span></span>قهوة مختصة<span></span>أجواء فخمة<span></span>جداريات فنية<span></span>جلسات هادئة<span></span>حتى الفجر<span></span>KORV COFFEE<span></span>قهوة مختصة<span></span>أجواء فخمة<span></span>جداريات فنية<span></span>جلسات هادئة<span></span>حتى الفجر</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="pad" id="about">
+  <div class="wrap about-grid">
+    <div class="about-tx rv">
+      <span class="tag"><i class="ph ph-coffee-bean"></i> عن كورف</span>
+      <h2>مساحةٌ <em>تُعاش</em><br>لا مجرّد فنجان</h2>
+      <p>في <b>مقهى كورف</b> اجتمعت القهوة المختصة بالتصميم: مساحات واسعة، جداريات فنية لافتة، وإطلالة هادئة تمنحك متّسعاً للراحة والحديث.</p>
+      <p>يصفه زوّاره بأنه <b>فخمٌ وجميل</b> بأجواءٍ هادئة وخدمة بشوشة وأسعار ممتازة — مكانٌ تعود إليه. نفتح أبوابنا حتى <b>الثانية فجراً</b>.</p>
+      <div class="stats">
+        <div class="stat"><b>4.2</b><span>تقييم الزوّار</span></div>
+        <div class="stat"><b>٢ ص</b><span>مفتوح حتى الفجر</span></div>
+        <div class="stat"><b>تبوك</b><span>حي الصفا · الحويّة</span></div>
+      </div>
+    </div>
+    <div class="frame rv d1">
+      <img src="img/lounge.jpg" alt="جلسات مقهى كورف بإطلالة">
+      <div class="badge"><i class="ph-fill ph-armchair"></i>
+        <div><b>جلسات واسعة</b><span>SPACIOUS &amp; CALM</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="feats pad">
+  <div class="wrap">
+    <div class="s-head rv">
+      <span class="tag"><i class="ph ph-sparkle"></i> لماذا كورف</span>
+      <h2>تفاصيل تصنع <em>التجربة</em></h2>
+      <p>ما يجعل كورف وجهةً مميّزة في تبوك.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat rv">
+        <div class="feat-ic"><i class="ph ph-coffee"></i></div>
+        <h3>قهوة مختصة<span class="se">Specialty Coffee</span></h3>
+        <p>مشروبات ساخنة وباردة تُحضّر بعناية، يصفها الزوّار باللذيذة وبأسعارٍ ممتازة.</p>
+      </div>
+      <div class="feat rv d1">
+        <div class="feat-ic"><i class="ph ph-paint-brush"></i></div>
+        <h3>أجواء فنية<span class="se">Artful Space</span></h3>
+        <p>جداريات لافتة وتصميم داخلي راقٍ بمساحات مفتوحة وإطلالة — مكانٌ للصورة والاسترخاء.</p>
+      </div>
+      <div class="feat rv d2">
+        <div class="feat-ic"><i class="ph ph-wind"></i></div>
+        <h3>جلسات معسّل<span class="se">Shisha Lounge</span></h3>
+        <p>أركان هادئة لجلسات المعسّل التي يثني عليها الزوّار، مع خدمة بشوشة حتى وقتٍ متأخّر.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HIGHLIGHT SPLIT -->
+<section class="pad">
+  <div class="wrap">
+    <div class="s-head rv">
+      <span class="tag"><i class="ph ph-star"></i> أبرز ما يميّزنا</span>
+      <h2>القهوة <em>والفن</em> في مكان</h2>
+    </div>
+    <div class="split">
+      <div class="split-card rv" data-img="img/signature.jpg">
+        <img src="img/signature.jpg" alt="حلا وقهوة كورف">
+        <div class="ov"><div class="n">SIGNATURE</div><h3>تشيز كيك وقهوة باردة</h3>
+          <p>تشيز كيك بالتوت وقهوة كورف الباردة على صينية خشبية — الأكثر التقاطاً للصور.</p></div>
+      </div>
+      <div class="split-card rv d1" data-img="img/mural.jpg">
+        <img src="img/mural.jpg" alt="جدارية مقهى كورف الفنية">
+        <div class="ov"><div class="n">THE MURAL</div><h3>جدارية كورف</h3>
+          <p>عمل فني جداري يميّز المكان ويمنح كل زاويةٍ طابعاً خاصاً.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SELECTION -->
+<section class="sel-wrap pad" id="selection">
+  <div class="wrap">
+    <div class="s-head rv">
+      <span class="tag"><i class="ph ph-coffee"></i> ما نقدّم</span>
+      <h2>مختارات <em>كورف</em></h2>
+      <p>لمحة عمّا تجده عندنا — والقائمة الكاملة بالأسعار عبر رابطنا الرسمي.</p>
+    </div>
+    <div class="sel-grid rv">
+      <div class="sel"><i class="ph-fill ph-coffee"></i><div class="st"><b>قهوة مختصة ساخنة</b><span>Hot Specialty</span><p>إسبريسو، لاتيه، وقهوة اليوم بنكهات نظيفة.</p></div></div>
+      <div class="sel"><i class="ph-fill ph-cup-hot"></i><div class="st"><b>مشروبات باردة</b><span>Iced & Cold Brew</span><p>قهوة باردة، آيس لاتيه، وماتشا منعشة.</p></div></div>
+      <div class="sel"><i class="ph-fill ph-cookie"></i><div class="st"><b>تشيز كيك وحلويات</b><span>Cheesecake & Sweets</span><p>تشيز كيك بالتوت وأصناف حلا متجدّدة.</p></div></div>
+      <div class="sel"><i class="ph-fill ph-wind"></i><div class="st"><b>جلسات معسّل</b><span>Shisha</span><p>أركان هادئة لجلسات المعسّل بأجواء مريحة.</p></div></div>
+    </div>
+    <div class="sel-cta rv d1">
+      <a href="https://linktr.ee/Korv.sa" target="_blank" rel="noopener" class="btn btn-light">القائمة الكاملة والروابط<i class="ph ph-arrow-up-left"></i></a>
+      <p class="sel-note">* القائمة والأسعار محدّثة على حساب كورف الرسمي — اضغط للاطّلاع.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="pad" id="gallery">
+  <div class="wrap">
+    <div class="s-head rv">
+      <span class="tag"><i class="ph ph-images"></i> المعرض</span>
+      <h2>من داخل <em>كورف</em></h2>
+      <p>لقطات حقيقية من المقهى — القهوة، الفن، والأجواء.</p>
+    </div>
+    <div class="gal rv">
+      <figure class="g-tall g-wide" data-img="img/hero.jpg"><img src="img/hero.jpg" alt="واجهة مقهى كورف"></figure>
+      <figure data-img="img/lounge.jpg"><img src="img/lounge.jpg" alt="جلسات كورف"></figure>
+      <figure data-img="img/signature.jpg"><img src="img/signature.jpg" alt="حلا وقهوة كورف"></figure>
+      <figure class="g-wide" data-img="img/mural.jpg"><img src="img/mural.jpg" alt="جدارية كورف"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact pad" id="contact">
+  <div class="wrap ct-grid">
+    <div class="ct-tx rv">
+      <span class="tag"><i class="ph ph-map-pin"></i> زورونا</span>
+      <h2>نراك في <em>كورف</em></h2>
+      <p>تجدنا في حي الصفا — الحويّة بتبوك. مفتوحون يومياً حتى الثانية فجراً.</p>
+      <div class="ct-rows">
+        <a class="ct-row" href="tel:+966504851150">
+          <div class="ic"><i class="ph-fill ph-phone"></i></div>
+          <div class="d"><b>اتصل بنا</b><span>050 485 1150</span></div>
+        </a>
+        <div class="ct-row">
+          <div class="ic"><i class="ph-fill ph-clock"></i></div>
+          <div class="d"><b>ساعات العمل</b><span class="ar">يومياً · حتى ٢ فجراً</span></div>
+        </div>
+        <a class="ct-row" href="https://www.google.com/maps/place/%D9%85%D9%82%D9%87%D9%89+%D9%83%D9%88%D8%B1%D9%81+-+KORV+coffee/@28.3453707,36.5096705,17z" target="_blank" rel="noopener">
+          <div class="ic"><i class="ph-fill ph-map-pin"></i></div>
+          <div class="d"><b>الموقع</b><span class="ar">حي الصفا · الحويّة · تبوك</span></div>
+        </a>
+        <a class="ct-row" href="https://linktr.ee/Korv.sa" target="_blank" rel="noopener">
+          <div class="ic"><i class="ph-fill ph-link"></i></div>
+          <div class="d"><b>القائمة والروابط</b><span class="ar">linktr.ee/Korv.sa</span></div>
+        </a>
+      </div>
+    </div>
+    <div class="ct-card rv d1">
+      <img src="img/mural.jpg" alt="أجواء مقهى كورف">
+      <div class="cc-foot"><b>KORV</b><span class="hrs">SPECIALTY · ART · CALM</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-mark">K</div>
+  <h3>KORV</h3>
+  <div class="f-ar">مقهى كورف · تبوك</div>
+  <div class="f-links">
+    <a href="#about">عن كورف</a>
+    <a href="#selection">ما نقدّم</a>
+    <a href="#gallery">المعرض</a>
+    <a href="#contact">زورونا</a>
+  </div>
+  <div class="f-line"></div>
+  <small>© ٢٠٢٦ مقهى كورف — جميع الحقوق محفوظة<br>
+  صُمّم بعناية · الصور والمعلومات من الحساب الرسمي على خرائط جوجل</small>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb"><button class="lb-x" id="lbx"><i class="ph ph-x"></i></button><img id="lbimg" src="" alt=""></div>
+
+<script>
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('shrink',scrollY>40),{passive:true});
+const burger=document.getElementById('burger'),ov=document.getElementById('overlay');
+const toggle=()=>{burger.classList.toggle('on');ov.classList.toggle('on');
+  document.body.style.overflow=ov.classList.contains('on')?'hidden':'';};
+burger.onclick=toggle;ov.querySelectorAll('a').forEach(a=>a.onclick=toggle);
+const rv=document.querySelectorAll('.rv');
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},
+  {threshold:0,rootMargin:'0px 0px -8% 0px'});
+rv.forEach(el=>io.observe(el));
+function safety(){const h=innerHeight;rv.forEach(el=>{if(el.getBoundingClientRect().top<h*0.96)el.classList.add('in');});}
+addEventListener('load',()=>{safety();setTimeout(safety,400);});
+addEventListener('scroll',safety,{passive:true});setTimeout(safety,1200);
+const lb=document.getElementById('lb'),lbimg=document.getElementById('lbimg'),lbx=document.getElementById('lbx');
+document.querySelectorAll('[data-img]').forEach(f=>f.onclick=()=>{lbimg.src=f.dataset.img;lb.classList.add('on');document.body.style.overflow='hidden';});
+const close=()=>{lb.classList.remove('on');document.body.style.overflow='';};
+lbx.onclick=close;lb.onclick=e=>{if(e.target===lb)close();};
+addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+</script>
+</body>
+</html>
